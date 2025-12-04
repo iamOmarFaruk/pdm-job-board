@@ -5,8 +5,15 @@
 .pdmjb-detail__card-icon { display: block; color: #ec2129; font-size: 26px; margin-bottom: 6px; }
 .pdmjb-jobs {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	grid-template-columns: repeat(2, 1fr);
 	gap: 24px;
+}
+
+@media (max-width: 768px) {
+	.pdmjb-jobs {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
 }
 
 .pdmjb-card {
@@ -51,7 +58,9 @@
 	display: grid;
 	gap: 4px;
 }
-.pdmjb-card__meta-item { display: flex; align-items: center; gap: 8px; }
+.pdmjb-card__meta-item { display: flex; align-items: flex-start; gap: 8px; }
+.pdmjb-card__meta-item .pdmjb-icon { margin-top: 3px; flex-shrink: 0; }
+.pdmjb-card__meta-item .pdmjb-meta__label { flex-shrink: 0; }
 
 .pdmjb-icon {
 	width: 16px;
