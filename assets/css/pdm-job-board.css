@@ -110,6 +110,13 @@
 	border-color: #c61c22;
 }
 
+/* Body scroll lock when modal is open */
+html.pdmjb-modal-open,
+html.pdmjb-modal-open body {
+	overflow: hidden !important;
+	height: 100% !important;
+}
+
 /* Modal */
 .pdmjb-modal {
 	position: fixed;
@@ -119,6 +126,7 @@
 	justify-content: center;
 	padding: 200px 16px 200px; /* top/bottom offset to avoid fixed header/footer */
 	z-index: 2147483647; /* max priority to stay above site UI */
+	overflow-y: auto;
 }
 .pdmjb-modal.is-open {
 	display: flex;

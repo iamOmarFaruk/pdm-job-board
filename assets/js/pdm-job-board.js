@@ -3,6 +3,9 @@
 		if(!modal) return;
 		modal.classList.add('is-open');
 		modal.setAttribute('aria-hidden','false');
+		// Lock body scroll
+		document.body.classList.add('pdmjb-modal-open');
+		document.documentElement.classList.add('pdmjb-modal-open');
 		// Focus first focusable element if present
 		var focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
 		if(focusable) focusable.focus();
@@ -12,6 +15,9 @@
 		if(!modal) return;
 		modal.classList.remove('is-open');
 		modal.setAttribute('aria-hidden','true');
+		// Unlock body scroll
+		document.body.classList.remove('pdmjb-modal-open');
+		document.documentElement.classList.remove('pdmjb-modal-open');
 	}
 
 	document.addEventListener('click', function(e){
