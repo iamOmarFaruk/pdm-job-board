@@ -160,7 +160,15 @@ class Job_Shortcode {
 		$q = new \WP_Query( $args );
 
 		if ( ! $q->have_posts() ) {
-			return '<div class="pdmjb-jobs pdmjb-jobs--empty">' . esc_html__( 'No jobs found.', 'pdm-job-board' ) . '</div>';
+			return '<div class="pdmjb-jobs pdmjb-jobs--empty">
+				<div class="pdmjb-empty-state">
+					<div class="pdmjb-empty-state__icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+					</div>
+					<h3 class="pdmjb-empty-state__title">' . esc_html__( 'No Job Openings Available', 'pdm-job-board' ) . '</h3>
+					<p class="pdmjb-empty-state__message">' . esc_html__( 'There are no job openings available at the moment. Please check back later for new opportunities.', 'pdm-job-board' ) . '</p>
+				</div>
+			</div>';
 		}
 
 		ob_start();
