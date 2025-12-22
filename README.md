@@ -168,3 +168,15 @@ GPL-2.0-or-later. See `LICENSE` if included, or use this snippet in your reposit
 > This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
 
 
+
+## Automatic Updates
+This plugin is configured to receive automatic updates from GitHub.
+
+### How to release a new version
+To trigger an update for users, you must create a **GitHub Release**:
+1.  Increase the `Version:` in `pdm-job-board.php` (e.g., to `1.0.5`).
+2.  Add a new entry to the [Changelog](#changelog) in this file.
+3.  Commit and Push changes to GitHub.
+4.  Go to your GitHub Repository -> **Releases** -> **Draft a new release**.
+5.  Create a new tag matching your version (e.g., `v1.0.5`) and publish.
+6.  Users will see an update notification in WordPress.

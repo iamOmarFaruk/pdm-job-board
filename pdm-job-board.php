@@ -26,6 +26,17 @@ define('PDMJB_PLUGIN_FILE', __FILE__);
 define('PDMJB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PDMJB_PLUGIN_URL', plugin_dir_url(__FILE__));
 
+// Auto-update mechanism
+if (file_exists(PDMJB_PLUGIN_DIR . 'includes/plugin-update-checker/plugin-update-checker.php')) {
+	require_once PDMJB_PLUGIN_DIR . 'includes/plugin-update-checker/plugin-update-checker.php';
+	$myUpdateChecker = \YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+		'https://github.com/iamOmarFaruk/pdm-job-board',
+		__FILE__,
+		'pdm-job-board'
+	);
+	// We do NOT set setBranch('main') so it defaults to checking GitHub Releases (Tags), which is the safe way.
+}
+
 // Bootstrap the plugin classes
 require_once PDMJB_PLUGIN_DIR . 'includes/class-pdm-job-board.php';
 
