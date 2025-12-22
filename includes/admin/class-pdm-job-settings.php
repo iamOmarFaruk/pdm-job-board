@@ -13,6 +13,7 @@ class Job_Settings
     {
         add_action('admin_menu', [$this, 'register_menu_page']);
         add_action('admin_init', [$this, 'register_settings']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
     }
 
     public function register_menu_page()
@@ -67,6 +68,15 @@ class Job_Settings
         );
     }
 
+    public function enqueue_admin_scripts()
+    {
+        $screen = get_current_screen();
+        if ($screen && strpos($screen->id, 'pdm-job-board-settings') !== false) {
+            wp_enqueue_style('wp-color-picker');
+            wp_enqueue_script('wp-color-picker');
+        }
+    }
+
     public function render_layout_field()
     {
         $options = get_option($this->option_name);
@@ -115,8 +125,15 @@ class Job_Settings
         $options = get_option($this->option_name);
         $value = isset($options['primary_color']) ? $options['primary_color'] : '#000000';
         ?>
-        <input type="color" name="<?php echo esc_attr($this->option_name); ?>[primary_color]" value="<?php echo esc_attr($value); ?>">
-        <p class="description"><?php esc_html_e('Select the primary color for the job board (default is #000000).', 'pdm-job-board'); ?></p>
+        <input type="text" class="pdmjb-color-field" name="<?php echo esc_attr($this->option_name); ?>[primary_color]"
+            value="<?php echo esc_attr($value); ?>" data-default-color="#000000">
+        <p class="description">
+            <?php esc_html_e('Select the primary color for the job board (default is #000000).', 'pdm-job-board'); ?></p>
+        <script>
+            jQuery(document).ready(function ($) {
+                $('.pdmjb-color-field').wpColorPicker();
+            });
+        </script>
         <?php
     }
 

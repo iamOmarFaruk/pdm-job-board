@@ -149,6 +149,10 @@ pdm-job-board/
 ```
 
 ## Changelog
+### 1.0.5 - 2025-12-22
+- Updated Primary Color setting to use standard WordPress Color Picker
+- Improved UX for color selection (visual picker + hex input)
+
 ### 1.0.4 - 2025-12-22
 - Added Dynamic Primary Color setting in admin
 - Added Grid Columns setting (2, 3, or 4 columns)

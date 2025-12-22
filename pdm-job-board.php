@@ -2,7 +2,7 @@
 /*
 Plugin Name: PDM Job Board
 Description: Modular job board plugin with a custom post type, secure custom fields, and a [jobs] shortcode that renders an Apply Now modal with your form shortcode.
-Version: 1.0.4
+Version: 1.0.5
 Author: PDM team and Omar
 Author URI: https://www.purelydigitalmarketing.com/
 Plugin URI: https://www.purelydigitalmarketing.com/
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-define('PDMJB_VERSION', '1.0.4');
+define('PDMJB_VERSION', '1.0.5');
 define('PDMJB_PLUGIN_FILE', __FILE__);
 define('PDMJB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PDMJB_PLUGIN_URL', plugin_dir_url(__FILE__));
