@@ -143,7 +143,9 @@
 }
 
 .pdmjb-btn:hover {
-	background: #f3f4f6;
+	background: #000;
+	color: #fff;
+	border-color: #000;
 }
 
 .pdmjb-btn--primary {
