@@ -305,7 +305,7 @@ html.pdmjb-modal-open body {
 	right: 12px;
 	top: 10px;
 	border: none;
-	background: var(--pdm-primary-color);
+	background: var(--pdm-primary-color) !important;
 	color: #fff;
 	cursor: pointer;
 	font-size: 14px;
@@ -320,8 +320,10 @@ html.pdmjb-modal-open body {
 	font-size: 22px;
 }
 
-.pdmjb-modal__close:hover {
-	background: var(--pdm-primary-color-hover);
+.pdmjb-modal__close:hover,
+.pdmjb-modal__close:focus {
+	background: var(--pdm-primary-color-hover) !important;
+	outline: none;
 }
 
 /* Details modal content */
