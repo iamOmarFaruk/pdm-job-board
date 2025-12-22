@@ -49,6 +49,14 @@ class Job_Settings
             'pdm-job-board-settings',
             'pdmjb_general_section'
         );
+
+        add_settings_field(
+            'grid_columns',
+            __('Grid Columns', 'pdm-job-board'),
+            [$this, 'render_grid_columns_field'],
+            'pdm-job-board-settings',
+            'pdmjb_general_section'
+        );
     }
 
     public function render_layout_field()
@@ -56,11 +64,41 @@ class Job_Settings
         $options = get_option($this->option_name);
         $value = isset($options['layout_view']) ? $options['layout_view'] : 'grid';
         ?>
-        <select name="<?php echo esc_attr($this->option_name); ?>[layout_view]">
+        <select name="<?php echo esc_attr($this->option_name); ?>[layout_view]" id="pdmjb_layout_view">
             <option value="grid" <?php selected($value, 'grid'); ?>><?php esc_html_e('Grid View', 'pdm-job-board'); ?></option>
             <option value="list" <?php selected($value, 'list'); ?>><?php esc_html_e('List View', 'pdm-job-board'); ?></option>
         </select>
         <p class="description"><?php esc_html_e('Select the default layout for the job listings page.', 'pdm-job-board'); ?></p>
+        <?php
+    }
+
+    public function render_grid_columns_field()
+    {
+        $options = get_option($this->option_name);
+        $value = isset($options['grid_columns']) ? intval($options['grid_columns']) : 3;
+        ?>
+        <select name="<?php echo esc_attr($this->option_name); ?>[grid_columns]" id="pdmjb_grid_columns">
+            <option value="2" <?php selected($value, 2); ?>>2</option>
+            <option value="3" <?php selected($value, 3); ?>>3</option>
+            <option value="4" <?php selected($value, 4); ?>>4</option>
+        </select>
+        <p class="description"><?php esc_html_e('Select how many posts per line to display in Grid View.', 'pdm-job-board'); ?>
+        </p>
+        <script>
+            jQuery(document).ready(function($) {
+                function toggleGridInputs() {
+                    const layout = $('#pdmjb_layout_view').val();
+                    const $gridRow = $('#pdmjb_grid_columns').closest('tr');
+                    if (layout === 'grid') {
+                        $gridRow.show();
+                    } else {
+                        $gridRow.hide();
+                    }
+                }
+                $('#pdmjb_layout_view').on('change', toggleGridInputs);
+                toggleGridInputs(); // Initial check
+            });
+        </script>
         <?php
     }
 
@@ -69,6 +107,9 @@ class Job_Settings
         $new_input = [];
         if (isset($input['layout_view'])) {
             $new_input['layout_view'] = sanitize_text_field($input['layout_view']);
+        }
+        if (isset($input['grid_columns'])) {
+            $new_input['grid_columns'] = intval($input['grid_columns']);
         }
         return $new_input;
     }

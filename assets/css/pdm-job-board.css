@@ -594,3 +594,15 @@ ul.pdmjb-detail__list {
 		margin-top: 8px;
 	}
 }
+/* Grid Columns Override for Desktop */
+@media (min-width: 1024px) {
+	.pdmjb-jobs--grid-2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.pdmjb-jobs--grid-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.pdmjb-jobs--grid-4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}

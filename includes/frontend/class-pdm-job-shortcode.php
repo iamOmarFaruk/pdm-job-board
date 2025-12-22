@@ -186,12 +186,15 @@ class Job_Shortcode
 
 		$settings = get_option('pdmjb_settings');
 		$layout_view = isset($settings['layout_view']) ? $settings['layout_view'] : 'grid';
+		$grid_columns = isset($settings['grid_columns']) ? intval($settings['grid_columns']) : 3;
 
 		ob_start();
 
 		$container_class = 'pdmjb-jobs';
 		if ($layout_view === 'list') {
 			$container_class .= ' pdmjb-jobs--list';
+		} else {
+			$container_class .= ' pdmjb-jobs--grid-' . $grid_columns;
 		}
 
 		echo '<div class="' . esc_attr($container_class) . '">';
