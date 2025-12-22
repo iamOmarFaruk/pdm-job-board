@@ -132,6 +132,27 @@ class Job_Shortcode
 
 		wp_enqueue_style('pdmjb-icons');
 		wp_enqueue_style('pdmjb-job-board');
+
+		// Dynamic Color Injection
+		$settings = get_option('pdmjb_settings');
+		$primary_color = isset($settings['primary_color']) ? $settings['primary_color'] : '#000000';
+
+		// Calculate hover color (darker version)
+		// Simple logic: if black, stay black or very dark gray. Else darken.
+		// We'll use a simple hex darken function or just inject opacity based logic.
+		// A robust way in PHP is converting hex to RGB, lowering values, back to hex.
+
+		$hover_color = $this->adjust_brightness($primary_color, -20); // Darken by 20 steps
+
+		$custom_css = "
+            :root {
+                --pdm-primary-color: {$primary_color};
+                --pdm-primary-color-hover: {$hover_color};
+                --pdm-primary-color-light: color-mix(in srgb, var(--pdm-primary-color), white 90%);
+            }
+        ";
+		wp_add_inline_style('pdmjb-job-board', $custom_css);
+
 		wp_enqueue_script('pdmjb-job-board');
 
 		$args = [
@@ -431,6 +452,31 @@ class Job_Shortcode
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
+	}
+
+	/**
+	 * Adjust brightness of a hex color.
+	 * Steps should be between -255 and 255. Negative = darker, Positive = lighter.
+	 */
+	private function adjust_brightness($hex, $steps)
+	{
+		// Normalize hex
+		$hex = str_replace('#', '', $hex);
+		if (strlen($hex) == 3) {
+			$hex = str_repeat(substr($hex, 0, 1), 2) . str_repeat(substr($hex, 1, 1), 2) . str_repeat(substr($hex, 2, 1), 2);
+		}
+
+		// Get RGB
+		$r = hexdec(substr($hex, 0, 2));
+		$g = hexdec(substr($hex, 2, 2));
+		$b = hexdec(substr($hex, 4, 2));
+
+		// Adjust
+		$r = max(0, min(255, $r + $steps));
+		$g = max(0, min(255, $g + $steps));
+		$b = max(0, min(255, $b + $steps));
+
+		return '#' . str_pad(dechex($r), 2, '0', STR_PAD_LEFT) . str_pad(dechex($g), 2, '0', STR_PAD_LEFT) . str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
 	}
 
 	private function render_modal(string $modal_id, string $job_title, string $form_shortcode, string $contact): void

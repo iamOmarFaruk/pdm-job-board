@@ -57,6 +57,14 @@ class Job_Settings
             'pdm-job-board-settings',
             'pdmjb_general_section'
         );
+
+        add_settings_field(
+            'primary_color',
+            __('Primary Color', 'pdm-job-board'),
+            [$this, 'render_primary_color_field'],
+            'pdm-job-board-settings',
+            'pdmjb_general_section'
+        );
     }
 
     public function render_layout_field()
@@ -85,7 +93,7 @@ class Job_Settings
         <p class="description"><?php esc_html_e('Select how many posts per line to display in Grid View.', 'pdm-job-board'); ?>
         </p>
         <script>
-            jQuery(document).ready(function($) {
+            jQuery(document).ready(function ($) {
                 function toggleGridInputs() {
                     const layout = $('#pdmjb_layout_view').val();
                     const $gridRow = $('#pdmjb_grid_columns').closest('tr');
@@ -102,6 +110,16 @@ class Job_Settings
         <?php
     }
 
+    public function render_primary_color_field()
+    {
+        $options = get_option($this->option_name);
+        $value = isset($options['primary_color']) ? $options['primary_color'] : '#000000';
+        ?>
+        <input type="color" name="<?php echo esc_attr($this->option_name); ?>[primary_color]" value="<?php echo esc_attr($value); ?>">
+        <p class="description"><?php esc_html_e('Select the primary color for the job board (default is #000000).', 'pdm-job-board'); ?></p>
+        <?php
+    }
+
     public function sanitize_settings($input)
     {
         $new_input = [];
@@ -110,6 +128,9 @@ class Job_Settings
         }
         if (isset($input['grid_columns'])) {
             $new_input['grid_columns'] = intval($input['grid_columns']);
+        }
+        if (isset($input['primary_color'])) {
+            $new_input['primary_color'] = sanitize_hex_color($input['primary_color']);
         }
         return $new_input;
     }

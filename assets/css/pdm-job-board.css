@@ -23,7 +23,7 @@
 
 .pdmjb-detail__card-icon {
 	display: block;
-	color: #ec2129;
+	color: var(--pdm-primary-color);
 	font-size: 26px;
 	margin-bottom: 6px;
 }
@@ -109,7 +109,7 @@
 	width: 16px;
 	height: 16px;
 	font-size: 16px;
-	color: #ec2129;
+	color: var(--pdm-primary-color);
 }
 
 .pdmjb-meta__label {
@@ -147,14 +147,14 @@
 }
 
 .pdmjb-btn--primary {
-	background: #ec2129;
-	border-color: #ec2129;
+	background: var(--pdm-primary-color);
+	border-color: var(--pdm-primary-color);
 	color: #fff;
 }
 
 .pdmjb-btn--primary:hover {
-	background: #c61c22;
-	border-color: #c61c22;
+	background: var(--pdm-primary-color-hover);
+	border-color: var(--pdm-primary-color-hover);
 }
 
 /* Body scroll lock when modal is open */
@@ -305,7 +305,7 @@ html.pdmjb-modal-open body {
 	right: 12px;
 	top: 10px;
 	border: none;
-	background: #ec2129;
+	background: var(--pdm-primary-color);
 	color: #fff;
 	cursor: pointer;
 	font-size: 14px;
@@ -321,7 +321,7 @@ html.pdmjb-modal-open body {
 }
 
 .pdmjb-modal__close:hover {
-	background: #c61c22;
+	background: var(--pdm-primary-color-hover);
 }
 
 /* Details modal content */
@@ -381,7 +381,7 @@ html.pdmjb-modal-open body {
 }
 
 .pdmjb-detail__list-icon {
-	color: #ec2129;
+	color: var(--pdm-primary-color);
 	width: 18px;
 	min-width: 18px;
 	font-size: 18px;
@@ -427,10 +427,10 @@ ul.pdmjb-detail__list {
 	justify-content: center;
 	width: 80px;
 	height: 80px;
-	background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+	background: var(--pdm-primary-color-light);
 	border-radius: 50%;
 	margin-bottom: 20px;
-	color: #ec2129;
+	color: var(--pdm-primary-color);
 }
 
 .pdmjb-empty-state__icon svg {
@@ -484,8 +484,8 @@ ul.pdmjb-detail__list {
 }
 
 .pdmjb-view-btn.active {
-	background: #ec2129;
-	border-color: #ec2129;
+	background: var(--pdm-primary-color);
+	border-color: var(--pdm-primary-color);
 	color: #fff;
 }
 
@@ -594,14 +594,17 @@ ul.pdmjb-detail__list {
 		margin-top: 8px;
 	}
 }
+
 /* Grid Columns Override for Desktop */
 @media (min-width: 1024px) {
 	.pdmjb-jobs--grid-2 {
 		grid-template-columns: repeat(2, 1fr);
 	}
+
 	.pdmjb-jobs--grid-3 {
 		grid-template-columns: repeat(3, 1fr);
 	}
+
 	.pdmjb-jobs--grid-4 {
 		grid-template-columns: repeat(4, 1fr);
 	}
