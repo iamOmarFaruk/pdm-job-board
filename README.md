@@ -149,6 +149,12 @@ pdm-job-board/
 ```
 
 ## Changelog
+### 1.0.4 - 2025-12-22
+- Added Dynamic Primary Color setting in admin
+- Added Grid Columns setting (2, 3, or 4 columns)
+- Added List/Grid View switcher on frontend
+- Added Settings update success message
+
 ### 1.0.0
 - Initial public release
 - Global modal UX with details + form
